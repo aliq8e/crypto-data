@@ -1,0 +1,95 @@
+{
+ "updated_utc": "2026-11-16T20:20:32+00:00",
+ "symbols": {
+  "UNIUSDT": {
+   "rows": 2251,
+   "first": "2020-09-17",
+   "last": "2026-11-15",
+   "last_close": "5.184",
+   "last_source": "binance",
+   "used": "data-api.binance.vision",
+   "errors": []
+  },
+  "LTCUSDT": {
+   "rows": 3260,
+   "first": "2017-12-13",
+   "last": "2026-11-15",
+   "last_close": "45.57",
+   "last_source": "binance",
+   "used": "data-api.binance.vision",
+   "errors": []
+  },
+  "BCHUSDT": {
+   "rows": 2545,
+   "first": "2019-11-28",
+   "last": "2026-11-15",
+   "last_close": "210.8",
+   "last_source": "binance",
+   "used": "data-api.binance.vision",
+   "errors": []
+  },
+  "NEARUSDT": {
+   "rows": 2224,
+   "first": "2020-10-14",
+   "last": "2026-11-15",
+   "last_close": "3.216",
+   "last_source": "binance",
+   "used": "data-api.binance.vision",
+   "errors": []
+  },
+  "BTCUSDT": {
+   "rows": 3378,
+   "first": "2017-08-17",
+   "last": "2026-11-15",
+   "last_close": "65351.05",
+   "last_source": "binance",
+   "used": "data-api.binance.vision",
+   "errors": []
+  },
+  "ETHUSDT": {
+   "rows": 3378,
+   "first": "2017-08-17",
+   "last": "2026-11-15",
+   "last_close": "1835.35",
+   "last_source": "binance",
+   "used": "data-api.binance.vision",
+   "errors": []
+  },
+  "SOLUSDT": {
+   "rows": 2288,
+   "first": "2020-08-11",
+   "last": "2026-11-15",
+   "last_close": "72.77",
+   "last_source": "binance",
+   "used": "data-api.binance.vision",
+   "errors": []
+  },
+  "BNBUSDT": {
+   "rows": 3297,
+   "first": "2017-11-06",
+   "last": "2026-11-15",
+   "last_close": "596.79",
+   "last_source": "binance",
+   "used": "data-api.binance.vision",
+   "errors": []
+  },
+  "LINKUSDT": {
+   "rows": 2861,
+   "first": "2019-01-16",
+   "last": "2026-11-15",
+   "last_close": "9.297",
+   "last_source": "binance",
+   "used": "data-api.binance.vision",
+   "errors": []
+  },
+  "AVAXUSDT": {
+   "rows": 2246,
+   "first": "2020-09-22",
+   "last": "2026-11-15",
+   "last_close": "7.311",
+   "last_source": "binance",
+   "used": "data-api.binance.vision",
+   "errors": []
+  }
+ }
+}
