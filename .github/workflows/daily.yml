@@ -1,0 +1,128 @@
+name: daily-data
+on:
+  schedule:
+    - cron: '17 0 * * *'
+    - cron: '17 6 * * *'
+    - cron: '47 10 * * *'
+    - cron: '47 11 * * *'
+  workflow_dispatch:
+  push:
+    paths: ['.github/workflows/daily.yml']
+permissions:
+  contents: write
+concurrency: daily-data
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Fetch daily candles
+        run: |
+          python3 - <<'EOF'
+          import json, csv, os, io, zipfile, time, urllib.request, datetime as dt
+          SYMS = ["UNI","LTC","BCH","NEAR","BTC","ETH","SOL","BNB","LINK","AVAX"]
+          KRAKEN = {"UNI":"UNIUSD","LTC":"LTCUSD","BCH":"BCHUSD","NEAR":"NEARUSD","BTC":"XBTUSD",
+                    "ETH":"ETHUSD","SOL":"SOLUSD","LINK":"LINKUSD","AVAX":"AVAXUSD"}
+          COLS = ["date","open","high","low","close","volume","quote_volume","trades","source"]
+          DAY = 86400000
+          NOW = int(time.time()*1000)
+          TODAY = dt.datetime.now(dt.timezone.utc).date()
+          os.makedirs("data", exist_ok=True)
+
+          def get(url):
+              req = urllib.request.Request(url, headers={"User-Agent": "crypto-data"})
+              with urllib.request.urlopen(req, timeout=30) as f:
+                  return f.read()
+
+          def day(ms):
+              ms = int(ms)
+              if ms > 10**14: ms //= 1000
+              return dt.datetime.fromtimestamp(ms/1000, dt.timezone.utc).strftime("%Y-%m-%d")
+
+          def num(x): return str(float(x))
+
+          def row(k, src):
+              return {"date": day(k[0]), "open": num(k[1]), "high": num(k[2]), "low": num(k[3]),
+                      "close": num(k[4]), "volume": num(k[5]), "quote_volume": num(k[7]),
+                      "trades": str(int(k[8])), "source": src}
+
+          def binance_api(host, s, start):
+              out, t = [], start
+              while True:
+                  raw = json.loads(get(f"https://{host}/api/v3/klines?symbol={s}USDT&interval=1d&limit=1000&startTime={t}"))
+                  out += [row(k, "binance") for k in raw if int(k[6]) < NOW]
+                  if len(raw) < 1000: return out
+                  t = int(raw[-1][0]) + DAY
+
+          def binance_zip(path):
+              z = zipfile.ZipFile(io.BytesIO(get(f"https://data.binance.vision/data/spot/{path}.zip")))
+              txt = z.read(z.namelist()[0]).decode()
+              return [row(k, "binance") for k in csv.reader(io.StringIO(txt)) if k and k[0].isdigit()]
+
+          def kraken(s):
+              j = json.loads(get(f"https://api.kraken.com/0/public/OHLC?pair={KRAKEN[s]}&interval=1440"))
+              if j.get("error"): raise Exception(j["error"])
+              res = j["result"]; ks = res[[k for k in res if k != "last"][0]][:-1]
+              return [{"date": day(int(k[0])*1000), "open": num(k[1]), "high": num(k[2]), "low": num(k[3]),
+                       "close": num(k[4]), "volume": num(k[6]), "quote_volume": "", "trades": str(k[7]),
+                       "source": "kraken_usd"} for k in ks]
+
+          status = {"updated_utc": dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds"), "symbols": {}}
+          for s in SYMS:
+              fn = f"data/{s}USDT_1d.csv"
+              have = {}
+              if os.path.exists(fn):
+                  with open(fn) as f: have = {r["date"]: r for r in csv.DictReader(f)}
+              good = sorted(d for d, r in have.items() if r["source"] == "binance")
+              start = 0
+              if good:
+                  start = int(dt.datetime.fromisoformat(good[-1]).replace(tzinfo=dt.timezone.utc).timestamp()*1000) - 5*DAY
+              new, errs, used = [], [], ""
+              for host in ("data-api.binance.vision", "api.binance.com"):
+                  try:
+                      new = binance_api(host, s, start); used = host; break
+                  except Exception as e:
+                      errs.append(f"{host}: {e}")
+              if not new:
+                  d = dt.date.fromisoformat(good[-1]) + dt.timedelta(1) if good else TODAY - dt.timedelta(900)
+                  while d < TODAY:
+                      got = []
+                      if (d.year, d.month) != (TODAY.year, TODAY.month):
+                          try: got = binance_zip(f"monthly/klines/{s}USDT/1d/{s}USDT-1d-{d:%Y-%m}")
+                          except Exception: pass
+                      if got:
+                          new += got; used = "data.binance.vision"
+                          d = (d.replace(day=1) + dt.timedelta(32)).replace(day=1)
+                      else:
+                          try:
+                              new += binance_zip(f"daily/klines/{s}USDT/1d/{s}USDT-1d-{d:%Y-%m-%d}"); used = "data.binance.vision"
+                          except Exception as e:
+                              errs.append(f"zip {d}: {e}")
+                          d += dt.timedelta(1)
+              merged = dict(have)
+              for r in new:
+                  merged[r["date"]] = r
+              yday = (TODAY - dt.timedelta(1)).isoformat()
+              if s in KRAKEN and (not merged or max(merged) < yday):
+                  try:
+                      for r in kraken(s):
+                          if r["date"] not in merged: merged[r["date"]] = r
+                      used += " +kraken_usd"
+                  except Exception as e:
+                      errs.append(f"kraken: {e}")
+              rows = [merged[k] for k in sorted(merged) if k < TODAY.isoformat()]
+              with open(fn, "w", newline="") as f:
+                  w = csv.DictWriter(f, fieldnames=COLS); w.writeheader(); w.writerows(rows)
+              last = rows[-1] if rows else {}
+              status["symbols"][f"{s}USDT"] = {"rows": len(rows), "first": rows[0]["date"] if rows else None,
+                  "last": last.get("date"), "last_close": last.get("close"), "last_source": last.get("source"),
+                  "used": used, "errors": errs[-5:]}
+              print(s, status["symbols"][f"{s}USDT"])
+          with open("data/_status.json", "w") as f: json.dump(status, f, indent=1)
+          EOF
+      - name: Commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data
+          git diff --cached --quiet || { git commit -m "data $(date -u +%F)"; git push; }
