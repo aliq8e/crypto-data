@@ -1,0 +1,180 @@
+{
+ "updated_utc": "2026-11-16T21:28:37+00:00",
+ "items": {
+  "fred_DGS10": {
+   "rows": 0,
+   "last": null,
+   "error": "The read operation timed out"
+  },
+  "fred_GS10": {
+   "rows": 0,
+   "last": null,
+   "error": "The read operation timed out"
+  },
+  "fred_VIXCLS": {
+   "rows": 0,
+   "last": null,
+   "error": "The read operation timed out"
+  },
+  "fred_DCOILBRENTEU": {
+   "rows": 0,
+   "last": null,
+   "error": "The read operation timed out"
+  },
+  "fred_DCOILWTICO": {
+   "rows": 0,
+   "last": null,
+   "error": "The read operation timed out"
+  },
+  "fred_SP500": {
+   "rows": 0,
+   "last": null,
+   "error": "The read operation timed out"
+  },
+  "fred_NASDAQCOM": {
+   "rows": 0,
+   "last": null,
+   "error": "The read operation timed out"
+  },
+  "fred_DTWEXBGS": {
+   "rows": 0,
+   "last": null,
+   "error": "The read operation timed out"
+  },
+  "fred_DEXUSEU": {
+   "rows": 0,
+   "last": null,
+   "error": "The read operation timed out"
+  },
+  "fred_DEXJPUS": {
+   "rows": 0,
+   "last": null,
+   "error": "The read operation timed out"
+  },
+  "fred_DEXUSUK": {
+   "rows": 0,
+   "last": null,
+   "error": "The read operation timed out"
+  },
+  "fred_DEXCAUS": {
+   "rows": 0,
+   "last": null,
+   "error": "The read operation timed out"
+  },
+  "fred_DEXSDUS": {
+   "rows": 0,
+   "last": null,
+   "error": "The read operation timed out"
+  },
+  "fred_DEXSZUS": {
+   "rows": 0,
+   "last": null,
+   "error": "The read operation timed out"
+  },
+  "dxy_from_fred": {
+   "rows": 0,
+   "last": null,
+   "error": "[Errno 2] No such file or directory: 'data/macro/fred_DEXUSEU.csv'"
+  },
+  "yahoo_DXY": {
+   "rows": 2514,
+   "last": "2026-11-13",
+   "error": null
+  },
+  "yahoo_VIX": {
+   "rows": 2514,
+   "last": "2026-11-13",
+   "error": null
+  },
+  "yahoo_US10Y": {
+   "rows": 2512,
+   "last": "2026-11-13",
+   "error": null
+  },
+  "yahoo_BRENT": {
+   "rows": 2515,
+   "last": "2026-11-13",
+   "error": null
+  },
+  "yahoo_WTI": {
+   "rows": 2514,
+   "last": "2026-11-13",
+   "error": null
+  },
+  "yahoo_GOLD": {
+   "rows": 2514,
+   "last": "2026-11-13",
+   "error": null
+  },
+  "yahoo_SP500": {
+   "rows": 2511,
+   "last": "2026-11-13",
+   "error": null
+  },
+  "yahoo_NASDAQ": {
+   "rows": 2511,
+   "last": "2026-11-13",
+   "error": null
+  },
+  "funding_BTC": {
+   "rows": 7488,
+   "last": "2026-10-31 16:00",
+   "error": "api: HTTP Error 451: "
+  },
+  "funding_ETH": {
+   "rows": 7488,
+   "last": "2026-10-31 16:00",
+   "error": "api: HTTP Error 451: "
+  },
+  "funding_SOL": {
+   "rows": 6793,
+   "last": "2026-10-31 16:00",
+   "error": "api: HTTP Error 451: "
+  },
+  "funding_BNB": {
+   "rows": 7367,
+   "last": "2026-10-31 16:00",
+   "error": "api: HTTP Error 451: "
+  },
+  "funding_LINK": {
+   "rows": 7439,
+   "last": "2026-10-31 16:00",
+   "error": "api: HTTP Error 451: "
+  },
+  "funding_AVAX": {
+   "rows": 6691,
+   "last": "2026-10-31 16:00",
+   "error": "api: HTTP Error 451: "
+  },
+  "funding_LTC": {
+   "rows": 7463,
+   "last": "2026-10-31 16:00",
+   "error": "api: HTTP Error 451: "
+  },
+  "funding_BCH": {
+   "rows": 7488,
+   "last": "2026-10-31 16:00",
+   "error": "api: HTTP Error 451: "
+  },
+  "funding_UNI": {
+   "rows": 6707,
+   "last": "2026-10-31 16:00",
+   "error": "api: HTTP Error 451: "
+  },
+  "funding_NEAR": {
+   "rows": 6625,
+   "last": "2026-10-31 16:00",
+   "error": "api: HTTP Error 451: "
+  },
+  "fear_greed": {
+   "rows": 3207,
+   "last": "2026-11-16",
+   "error": null
+  },
+  "stablecoins_total": {
+   "rows": 3275,
+   "last": "2026-11-16",
+   "error": null
+  }
+ }
+}
