@@ -1,5 +1,5 @@
 {
- "updated_utc": "2026-11-17T12:40:59+00:00",
+ "updated_utc": "2026-11-17T23:16:03+00:00",
  "items": {
   "fred_DGS10": {
    "rows": 0,
@@ -77,43 +77,43 @@
    "error": "[Errno 2] No such file or directory: 'data/macro/fred_DEXUSEU.csv'"
   },
   "yahoo_DXY": {
-   "rows": 2515,
-   "last": "2026-11-16",
+   "rows": 2516,
+   "last": "2026-11-17",
    "error": null
   },
   "yahoo_VIX": {
-   "rows": 2515,
-   "last": "2026-11-16",
+   "rows": 2516,
+   "last": "2026-11-17",
    "error": null
   },
   "yahoo_US10Y": {
-   "rows": 2513,
-   "last": "2026-11-16",
+   "rows": 2514,
+   "last": "2026-11-17",
    "error": null
   },
   "yahoo_BRENT": {
-   "rows": 2516,
-   "last": "2026-11-16",
+   "rows": 2517,
+   "last": "2026-11-17",
    "error": null
   },
   "yahoo_WTI": {
-   "rows": 2515,
-   "last": "2026-11-16",
+   "rows": 2516,
+   "last": "2026-11-17",
    "error": null
   },
   "yahoo_GOLD": {
-   "rows": 2515,
-   "last": "2026-11-16",
+   "rows": 2516,
+   "last": "2026-11-17",
    "error": null
   },
   "yahoo_SP500": {
-   "rows": 2512,
-   "last": "2026-11-16",
+   "rows": 2513,
+   "last": "2026-11-17",
    "error": null
   },
   "yahoo_NASDAQ": {
-   "rows": 2512,
-   "last": "2026-11-16",
+   "rows": 2513,
+   "last": "2026-11-17",
    "error": null
   },
   "funding_BTC": {
