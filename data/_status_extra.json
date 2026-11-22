@@ -1,5 +1,5 @@
 {
- "updated_utc": "2026-11-21T23:02:35+00:00",
+ "updated_utc": "2026-11-22T07:34:17+00:00",
  "items": {
   "fred_DGS10": {
    "rows": 0,
@@ -167,13 +167,13 @@
    "error": "api: HTTP Error 451: "
   },
   "fear_greed": {
-   "rows": 3212,
-   "last": "2026-11-21",
+   "rows": 3213,
+   "last": "2026-11-22",
    "error": null
   },
   "stablecoins_total": {
-   "rows": 3280,
-   "last": "2026-11-21",
+   "rows": 3281,
+   "last": "2026-11-22",
    "error": null
   }
  }
