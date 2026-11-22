@@ -1,5 +1,5 @@
 {
- "updated_utc": "2026-11-22T12:29:33+00:00",
+ "updated_utc": "2026-11-22T23:04:47+00:00",
  "items": {
   "fred_DGS10": {
    "rows": 0,
@@ -77,8 +77,8 @@
    "error": "[Errno 2] No such file or directory: 'data/macro/fred_DEXUSEU.csv'"
   },
   "yahoo_DXY": {
-   "rows": 2519,
-   "last": "2026-11-20",
+   "rows": 2520,
+   "last": "2026-11-22",
    "error": null
   },
   "yahoo_VIX": {
@@ -92,18 +92,18 @@
    "error": null
   },
   "yahoo_BRENT": {
-   "rows": 2520,
-   "last": "2026-11-20",
+   "rows": 2521,
+   "last": "2026-11-22",
    "error": null
   },
   "yahoo_WTI": {
-   "rows": 2519,
-   "last": "2026-11-20",
+   "rows": 2520,
+   "last": "2026-11-22",
    "error": null
   },
   "yahoo_GOLD": {
-   "rows": 2519,
-   "last": "2026-11-20",
+   "rows": 2520,
+   "last": "2026-11-22",
    "error": null
   },
   "yahoo_SP500": {
